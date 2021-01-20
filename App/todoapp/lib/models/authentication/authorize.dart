@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class AuthService with changeNotifier {
+class AuthService with ChangeNotifier {
   var currentUser;
 
   AuthService() {
@@ -15,19 +15,20 @@ class AuthService with changeNotifier {
 Future logout() {
     this.currentUser = null;
     notifyListeners();
-    return Futurn.value(currentUser);
+    return Future.value(currentUser);
 }
 // wrapping the firebase calls
   Future createUser(
   {String firstName,
   String lastName,
-  String email
+  String email,
   String password}) async{}
   //logs in the user if password matches
 Future loginUser({String email,String password}) {
     if (password =='password123') {
       this.currentUser = {'email': email};
       notifyListeners();
+
       return Future.value(currentUser);
     } else {
       this.currentUser = null;

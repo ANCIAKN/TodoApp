@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
-  TextEditingController firstnameController = new TextEditingController();
+  TextEditingController firstNameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
   @override
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             TextField(
-              controller: firstnameController,
+              controller: firstNameController,
               decoration: InputDecoration(
                   hintText: "First name"
               ),
@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                       || emailController.text !=null) {
                     userBloc.registerUser(
                         usernameController.text,
-                        firstnameController.text ?? "",
+                        firstNameController.text ?? "",
                         "",
                         emailController.text,
                         passwordController.text).then((_) {

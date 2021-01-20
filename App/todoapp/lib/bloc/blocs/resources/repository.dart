@@ -5,8 +5,8 @@ import 'package:todoapp/models/classes/user.dart';
 class Repository {
    final apiProvider = ApiProvider();
 
-   Future<User> registerUser(String username, String firstname, String lastname, String emailadress, String password)
-   => apiProvider.registerUser(username, firstname, lastname, emailadress, password);
+   Future<User> registerUser(String username, String firstName, String lastName, String email, String password)
+   => apiProvider.registerUser(username, firstName, lastName, email, password);
 
    Future signinUser(String username,  String password, String apiKey)
    => apiProvider.signinUser(username, password, apiKey);

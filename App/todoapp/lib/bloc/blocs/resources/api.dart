@@ -9,17 +9,17 @@ class ApiProvider {
   Client client = Client();
   final _apiKey = 'your_api_key';
 
-  Future<User> registerUser(String username, String firstname, String lastname,
-      String emailadress, String password) async {
+  Future<User> registerUser(String username, String firstName, String lastName,
+      String email, String password) async {
     final response = await client
         .post("http://10.0.2.2:5000/api/register",
         // headers: "",
         body: jsonEncode({
-          "emailadress": emailadress,
+          "email": email,
           "username": username,
           "password": password,
-          "firstname": firstname,
-          "lastname": lastname
+          "firstName": firstName,
+          "lastName": lastName
         }
         )
     );
@@ -60,8 +60,8 @@ class ApiProvider {
     final response = await client
         .get("http://10.0.2.2:5000/api/tasks",
         headers: {
-          "Authorization" :apiKey
-        },
+        "Authorization" :apiKey
+      },
     );
     final Map result = json.decode(response.body);
     if (response.statusCode == 201) {
@@ -81,32 +81,33 @@ class ApiProvider {
       return tasks;
     } else {
       // if that call was not successful, throw an error.
-      throw Exception('Failed to load post tasks' );
+      throw Exception('Failed to load tasks' );
     }
   }
 
   Future addUserTask(String apiKey, String taskName, String deadline) async {
     final response = await client
         .post("http://10.0.2.2:5000/api/tasks",
-      headers: {
-        "Authorization" :apiKey
-      },
-       body: jsonEncode({
-         "note": "",
-         "repeats": "",
-         "completed": false,
-         "deadline" : deadline,
-         "reminders": "",
-         "title": taskName
-       })
+        headers: {
+          "Authorization" :apiKey
+        },
+        body: jsonEncode({
+          "note": "",
+          "repeats": "",
+          "completed": false,
+          "deadline" : deadline,
+          "reminders": "",
+          "title": taskName
+        })
     );
 
     if (response.statusCode == 201) {
       // if the call to the server was successful,parse the JSON
-        print("Task added");
+      print("Task added");
     } else {
       // if that call was not successful, throw an error.
-      throw Exception('Failed to load post tasks' );
+      print(json.decode(response.body));
+      throw Exception('Failed to load  Tasks' );
     }
   }
 
